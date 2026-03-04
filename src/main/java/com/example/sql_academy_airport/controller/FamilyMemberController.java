@@ -28,7 +28,7 @@ public class FamilyMemberController {
         return new ResponseEntity<>(familyMemberService.getById(id), HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<FamilyMemberOutputDto> update(@RequestBody FamilyMemberInputDto familyMemberInputDto,
                                                         @PathVariable Long id) {
         return new ResponseEntity<>(familyMemberService.update(familyMemberInputDto, id), HttpStatus.OK);

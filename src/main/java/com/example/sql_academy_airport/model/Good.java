@@ -32,4 +32,8 @@ public class Good {
         this.goodName = goodName;
         this.type = type;
     }
+
+    public Good(long goodId, String goodName) {
+
+    }
 }

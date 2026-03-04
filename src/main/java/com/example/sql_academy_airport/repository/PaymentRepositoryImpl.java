@@ -1,5 +1,7 @@
 package com.example.sql_academy_airport.repository;
 
+import com.example.sql_academy_airport.model.FamilyMember;
+import com.example.sql_academy_airport.model.Good;
 import com.example.sql_academy_airport.model.Payment;
 import com.example.sql_academy_airport.util.exception.WrongIdForUpdateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,13 +49,23 @@ public class PaymentRepositoryImpl implements PaymentRepository {
                 SELECT p.payment_id, 
                 p.amount,
                 p.unit_price,
-                p.date
-                FROM payments
-                WHERE id = ?
+                p.date,
+                
+                fm.member_id,
+                fm.member_name,
+                fm.status,
+                fm.birthday,
+                
+                g.good_id,
+                g.good_name
+                
+                FROM payments p 
+                JOIN family_members fm ON fm.member_id = p.family_member
+                JOIN goods g ON p.good = g.good_id
+                WHERE payment_id = ?
                 """;
         try {
-            return template.queryForObject(sqlQuery, (rs, rowNum) ->
-                    rowMapper(rs), id);
+            return template.queryForObject(sqlQuery, (rs, rowNum) -> mapFullPayment(rs), id);
         } catch (EmptyResultDataAccessException e) {
             throw new NoSuchElementException("can`t get payment");
         }
@@ -63,7 +75,7 @@ public class PaymentRepositoryImpl implements PaymentRepository {
     public Payment update(Payment payment, Long id) {
         String sqlQuery = """
                 UPDATE payments
-                SET amount = ?, unit_price = ?, date = ?, family_member = ?, good = ?
+                SET amount = ?, unit_price = ?, date = ?, family_member = ?
                 WHERE payment_id = ?
                 """;
         int countOfUpdated = template.update(sqlQuery,
@@ -71,7 +83,6 @@ public class PaymentRepositoryImpl implements PaymentRepository {
                 payment.getUnitPrice(),
                 payment.getDate(),
                 payment.getFamilyMember().getMemberId(),
-                payment.getGood().getGoodId(),
                 id
         );
         if (countOfUpdated == 0) {
@@ -112,6 +123,29 @@ public class PaymentRepositoryImpl implements PaymentRepository {
                 rs.getInt("amount"),
                 rs.getInt("unit_price"),
                 rs.getDate("date").toLocalDate()
+        );
+    }
+
+    private Payment mapFullPayment(ResultSet rs) throws SQLException {
+        Good good = new Good(
+                rs.getLong("good_id"),
+                rs.getString("good_name")
+        );
+
+        FamilyMember member = new FamilyMember(
+                rs.getLong("member_id"),
+                rs.getString("member_name"),
+                rs.getString("status"),
+                rs.getDate("birthday").toLocalDate()
+        );
+
+        return new Payment(
+                rs.getLong("payment_id"),
+                rs.getInt("amount"),
+                rs.getInt("unit_price"),
+                rs.getDate("date").toLocalDate(),
+                member,
+                good
         );
     }
 }

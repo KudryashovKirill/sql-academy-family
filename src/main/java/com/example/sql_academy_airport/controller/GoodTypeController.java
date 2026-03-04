@@ -30,7 +30,7 @@ public class GoodTypeController {
         return new ResponseEntity<>(goodTypeService.getById(id), HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<GoodTypeOutputDto> update(@RequestBody GoodTypeInputDto goodTypeInputDto,
                                                     @PathVariable Long id) {
         return new ResponseEntity<>(goodTypeService.update(goodTypeInputDto, id), HttpStatus.OK);

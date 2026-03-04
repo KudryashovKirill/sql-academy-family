@@ -1,13 +1,11 @@
 package com.example.sql_academy_airport.dto.output;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class GoodTypeOutputDto {

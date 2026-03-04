@@ -28,7 +28,7 @@ public class PaymentController {
         return new ResponseEntity<>(paymentService.getById(id), HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<PaymentOutputDto> update(@RequestBody PaymentInputDto paymentInputDto,
                                                    @PathVariable Long id) {
         return new ResponseEntity<>(paymentService.update(paymentInputDto, id), HttpStatus.OK);

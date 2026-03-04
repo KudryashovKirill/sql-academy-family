@@ -1,0 +1,786 @@
+{
+  "info": {
+    "_postman_id": "adcc956f-d98f-4291-a304-1c9b422dd4d0",
+    "name": "sqlAcademy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40944544"
+  },
+  "item": [
+    {
+      "name": "airport",
+      "item": [
+        {
+          "name": "company",
+          "item": [
+            {
+              "name": "create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"company\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/company",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "company"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getById",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Ivan Petrov\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/company/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "company",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Company update\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/company/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "company",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Ivan Petrov\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/company/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "company",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "passenger",
+          "item": [
+            {
+              "name": "create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Ivan Petrov\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/passenger",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "passenger"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getById",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8080/passenger/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "passenger",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\":\"passenger update\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/passenger/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "passenger",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\":\"passenger update\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/passenger/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "passenger",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "trip",
+          "item": [
+            {
+              "name": "create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/trip",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "trip"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getById",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/trip/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "trip",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin UPDATE\",\r\n  \"townTo\": \"Paris UPDATE\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/trip/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "trip",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/trip/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "trip",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "family",
+      "item": [
+        {
+          "name": "family member",
+          "item": [
+            {
+              "name": "getById",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/familyMember/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "familyMember",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"memberName\": \"Michael Johnson\",\r\n  \"status\": \"Active\",\r\n  \"birthday\": \"1995-04-12\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/familyMember",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "familyMember"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"memberName\": \"Michael Johnson UPDATE\",\r\n  \"status\": \"Active\",\r\n  \"birthday\": \"1995-04-12\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/familyMember/100",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "familyMember",
+                    "100"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/familyMember/101",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "familyMember",
+                    "101"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "good",
+          "item": [
+            {
+              "name": "create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"goodName\": \"Gaming Laptop\",\r\n  \"goodType\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/good",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "good"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getById",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/good/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "good",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"goodName\": \"Gaming Laptop UPDATE\",\r\n  \"goodType\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/good/101",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "good",
+                    "101"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/good/101",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "good",
+                    "101"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "payment",
+          "item": [
+            {
+              "name": "getById",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/payment/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "payment",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"amount\": 3,\r\n  \"unitPrice\": 150,\r\n  \"date\": \"2026-03-04T14:30:00\",\r\n  \"familyMemberId\": 5,\r\n  \"goodId\": 12\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/payment",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "payment"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"amount\": 3,\r\n  \"unitPrice\": 15000000,\r\n  \"date\": \"2026-03-04T14:30:00\",\r\n  \"familyMemberId\": 5,\r\n  \"goodId\": 12\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/payment/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "payment",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/payment/101",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "payment",
+                    "101"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "good type",
+          "item": [
+            {
+              "name": "getById",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/goodType/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "goodType",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"goodTypeName\": \"Home Appliances\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/goodType",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "goodType"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"plane\": \"Boeing 777\",\r\n  \"companyId\":1,\r\n  \"townFrom\": \"Berlin\",\r\n  \"townTo\": \"Paris\",\r\n  \"timeOut\": \"2026-03-10T08:00:00\",\r\n  \"timeIn\": \"2026-03-10T10:30:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "localhost:8080/goodType/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "goodType",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"goodTypeName\": \"Home Appliances UPDATE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8080/goodType/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "goodType",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

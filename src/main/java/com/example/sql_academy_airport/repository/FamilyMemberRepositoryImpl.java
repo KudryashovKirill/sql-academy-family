@@ -41,7 +41,7 @@ public class FamilyMemberRepositoryImpl implements FamilyMemberRepository {
         String sqlQuery = """
                 SELECT *
                 FROM family_members
-                WHERE id = ?
+                WHERE member_id = ?
                 """;
         try {
             return template.queryForObject(sqlQuery,
@@ -57,7 +57,7 @@ public class FamilyMemberRepositoryImpl implements FamilyMemberRepository {
         String sqlQuery = """
                 UPDATE family_members
                 SET member_name = ?, status = ?, birthday = ?
-                WHERE id = ?
+                WHERE member_id = ?
                 """;
         int updatedCompanies = template.update(sqlQuery, familyMember.getMemberName(), familyMember.getStatus(),
                 familyMember.getBirthday(), id);
@@ -72,7 +72,7 @@ public class FamilyMemberRepositoryImpl implements FamilyMemberRepository {
     public Map<String, Boolean> delete(Long id) {
         String sqlQuery = """
                 DELETE FROM family_members
-                WHERE id = ?
+                WHERE member_id = ?
                 """;
         int countOfDeletedCompanies = template.update(sqlQuery, id);
         return Map.of("deleted", countOfDeletedCompanies > 0);

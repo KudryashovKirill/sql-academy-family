@@ -28,7 +28,7 @@ public class GoodController {
         return new ResponseEntity<>(goodService.getById(id), HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<GoodOutputDto> update(@RequestBody GoodInputDto goodInputDto,
                                                 @PathVariable Long id) {
         return new ResponseEntity<>(goodService.update(goodInputDto, id), HttpStatus.OK);

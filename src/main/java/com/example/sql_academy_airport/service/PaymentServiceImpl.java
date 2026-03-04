@@ -33,8 +33,6 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentOutputDto getById(Long id) {
         Payment payment = paymentRepository.getById(id);
-        payment.setFamilyMember(familyMemberRepository.getById(payment.getFamilyMember().getMemberId()));
-        payment.setGood(goodRepository.getById(payment.getGood().getGoodId()));
         return paymentMapper.toDto(payment);
     }
 
