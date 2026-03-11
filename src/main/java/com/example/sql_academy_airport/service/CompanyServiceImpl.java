@@ -7,6 +7,7 @@ import com.example.sql_academy_airport.util.CompanyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -36,6 +37,18 @@ public class CompanyServiceImpl implements CompanyService {
         Company company = mapper.toEntity(companyDto);
         mapper.updateEntityFromDto(companyDto, company);
         return mapper.toDto(companyRepository.update(company, id));
+    }
+    @Override
+    public List<String> getAllNames() {
+        return companyRepository.getAllNames();
+    }
+    @Override
+    public List<String> getCompaniesByPlaneName(String planeName) {
+        return companyRepository.getCompaniesByPlaneName(planeName);
+    }
+    @Override
+    public List<String> getAllTownFrom(String townFrom) {
+        return companyRepository.getAllTownFrom(townFrom);
     }
 
     @Override

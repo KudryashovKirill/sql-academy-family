@@ -8,6 +8,10 @@ import com.example.sql_academy_airport.util.TripMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -45,5 +49,36 @@ public class TripServiceImpl implements TripService {
     @Override
     public Map<String, Boolean> delete(Long id) {
         return tripRepository.delete(id);
+    }
+
+    @Override
+    public List<TripDto> getAllFromTownFrom(String townFrom) {
+        return tripRepository.getAllFromTownFrom(townFrom)
+                .stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public Integer getAllPlanesByName(String name) {
+        return tripRepository.getAllPlanesByName(name);
+    }
+
+    @Override
+    public List<String> getAllPlanesByTownTo(String townTo) {
+        return tripRepository.getAllPlanesByTownTo(townTo);
+    }
+
+    @Override
+    public Map<String, Duration> getAllFromTownFromMap(String townFrom) {
+        return tripRepository.getAllFromTownFromMap(townFrom);
+    }
+
+    @Override
+    public List<TripDto> getAllBetweenTime(LocalDate timeStart, LocalDate timeEnd) {
+        return tripRepository.getAllBetweenTime(timeStart, timeEnd)
+                .stream()
+                .map(mapper::toDto)
+                .toList();
     }
 }

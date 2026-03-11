@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -73,6 +74,22 @@ public class CompanyRepositoryImpl implements CompanyRepository {
                 """;
         int countOfDeletedCompanies = template.update(sqlQuery, id);
         return Map.of("deleted", countOfDeletedCompanies > 0);
+    }
+
+    public List<String> getAllNames() {
+        String sqlQuery = "SELECT name FROM companies";
+        return template.query(sqlQuery, (rs, rowNum) -> rs.getString("name"));
+    }
+
+    public List<String> getCompaniesByPlaneName(String planeName) {
+        String sqlQuery = "SELECT DISTINCT c.name FROM companies c JOIN trips t ON c.id = t.company " +
+                "WHERE t.plane = ?";
+        return template.query(sqlQuery, (rs, rowNum) -> rs.getString("name"), planeName);
+    }
+
+    public List<String> getAllTownFrom(String townFrom) {
+        String sqlQuery = "SELECT name FROM companies c JOIN trips t ON t.company = c.id WHERE town_from = ?";
+        return template.query(sqlQuery, (rs, rowNum) -> rs.getString("name"), townFrom);
     }
 
     private Company rowMapper(ResultSet rs) throws SQLException {

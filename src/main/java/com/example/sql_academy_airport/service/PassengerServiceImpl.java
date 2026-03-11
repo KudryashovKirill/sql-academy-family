@@ -7,6 +7,7 @@ import com.example.sql_academy_airport.util.PassengerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -36,6 +37,22 @@ public class PassengerServiceImpl implements PassengerService {
         Passenger passenger = mapper.toEntity(passengerDto);
         mapper.updateEntityFromDto(passengerDto, passenger);
         return mapper.toDto(passengerRepository.update(passenger, id));
+    }
+    @Override
+    public List<String> getAllNames() {
+        return passengerRepository.getAllNames();
+    }
+    @Override
+    public List<String> getAllEndWith(String namePostfix) {
+        return passengerRepository.getAllEndWith(namePostfix);
+    }
+    @Override
+    public List<String> getAllLongestNames() {
+        return passengerRepository.getAllLongestNames();
+    }
+    @Override
+    public Map<Long, Integer> getCountPassengerByTrip() {
+        return passengerRepository.getCountPassengerByTrip();
     }
 
     @Override

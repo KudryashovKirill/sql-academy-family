@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,12 +30,27 @@ public class CompanyController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CompanyDto> update(@RequestBody CompanyDto companyDto,
-                                          @PathVariable Long id) {
+                                             @PathVariable Long id) {
         return new ResponseEntity<>(companyService.update(companyDto, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Boolean>> delete(@PathVariable Long id) {
         return new ResponseEntity<>(companyService.delete(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/allNames")
+    public ResponseEntity<List<String>> getAllNames() {
+        return new ResponseEntity<>(companyService.getAllNames(), HttpStatus.OK);
+    }
+
+    @GetMapping("/plane")
+    public ResponseEntity<List<String>> getCompaniesByPlaneName(@RequestParam String planeName) {
+        return new ResponseEntity<>(companyService.getCompaniesByPlaneName(planeName), HttpStatus.OK);
+    }
+
+    @GetMapping("/townFrom")
+    public ResponseEntity<List<String>> getAllTownFrom(@RequestParam String townFrom) {
+        return new ResponseEntity<>(companyService.getAllTownFrom(townFrom), HttpStatus.OK);
     }
 }

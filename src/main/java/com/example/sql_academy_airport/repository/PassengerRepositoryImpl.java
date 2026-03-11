@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -75,6 +77,33 @@ public class PassengerRepositoryImpl implements PassengerRepository {
                 """;
         int countOfDeletedPassengers = template.update(sqlQuery, id);
         return Map.of("deleted", countOfDeletedPassengers > 0);
+    }
+
+    public List<String> getAllNames() {
+        String sqlQuery = "SELECT name FROM passengers";
+        return template.query(sqlQuery, (rs, rowNum) -> rs.getString("name"));
+    }
+
+    public List<String> getAllEndWith(String namePostfix) {
+        String sqlQuery = "SELECT name FROM passengers WHERE name LIKE '%?'";
+        return template.query(sqlQuery, (rs, rowNum) -> rs.getString("name"));
+    }
+
+    public List<String> getAllLongestNames() {
+        String sqlQuery = "SELECT name FROM passengers WHERE LENGTH(name) = (SELECT MAX(LENGTH(name)) FROM passengers)";
+        return template.query(sqlQuery, (rs, rowNum) -> rs.getString("name"));
+    }
+
+    public Map<Long, Integer> getCountPassengerByTrip() {
+        String sqlQuery = "SELECT t.id as trip_id, COUNT(pit.passenger) as count FROM trips t LEFT JOIN pass_in_trip pit ON t.id " +
+                "= pit.trip GROUP BY t.id";
+        return template.query(sqlQuery, rs -> {
+            Map<Long, Integer> map = new HashMap<>();
+            while (rs.next()) {
+                map.put(rs.getLong("trip_id"), rs.getInt("count"));
+            }
+            return map;
+        });
     }
 
     private Passenger rowMapper(ResultSet rs) throws SQLException {
