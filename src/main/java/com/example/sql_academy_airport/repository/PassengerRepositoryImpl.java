@@ -106,6 +106,25 @@ public class PassengerRepositoryImpl implements PassengerRepository {
         });
     }
 
+    public List<String> getAllSameNames() {
+        String sqlQuery = "SELECT name FROM Passenger GROUP BY name HAVING COUNT(*) > 1";
+        return template.query(sqlQuery, (rs, rowNum) -> rs.getString("name"));
+    }
+
+    public Map<String, Integer> getPassByNumOfTrips() {
+        String sqlQuery = """
+                SELECT name, COUNT(name) AS count
+                FROM passenger ps
+                         JOIN Pass_in_trip pt ON ps.id = pt.passenger
+                         JOIN trip tr ON pt.trip = tr.id
+                GROUP BY name
+                ORDER BY count DESC,
+                         name ASC
+                """;
+        return template.queryForObject(sqlQuery, (rs, rowNum) -> Map.of(rs.getString("name"),
+                rs.getInt("count")));
+    }
+
     private Passenger rowMapper(ResultSet rs) throws SQLException {
         return new Passenger(
                 rs.getLong("id"),

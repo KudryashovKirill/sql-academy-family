@@ -136,6 +136,31 @@ public class TripRepositoryImpl implements TripRepository {
         return template.query(sqlQuery, (rs, rowNum) -> rowMapper(rs), timeStart, timeEnd);
     }
 
+    public List<String> getAllTownToByPassName(String passName) {
+        String sqlQuery = """
+                SELECT DISTINCT trips.town_to
+                FROM trips
+                JOIN pass_in_trip ON Trip.id = pass_in_trip.trip
+                JOIN passengers ON pass_in_trip.passenger = passengers.id
+                WHERE passengers.name = ?
+                """;
+        return template.query(sqlQuery, (rs, rowNum) -> rs.getString("town_to"), passName);
+    }
+
+    public Map<Long, LocalDateTime> getIdAndDateByPass(String passName, String townTo) {
+        String sqlQuery = """
+                SELECT Passenger.id, Trip.time_in
+                FROM Trip
+                JOIN Pass_in_trip ON Trip.id = Pass_in_trip.trip
+                JOIN Passenger ON Pass_in_trip.passenger = Passenger.id
+                WHERE Passenger.name = ? AND Trip.town_to = ?
+                """;
+        return template.queryForObject(sqlQuery, (rs, rowNum) -> Map.of(rs.getLong("id"),
+                rs.getTimestamp("time_in").toLocalDateTime()), passName, townTo);
+    }
+
+
+
     private Trip rowMapper(ResultSet rs) throws SQLException {
         return new Trip(rs.getLong("id"),
                 rs.getString("plane"),
