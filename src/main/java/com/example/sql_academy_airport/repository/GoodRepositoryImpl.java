@@ -3,6 +3,7 @@ package com.example.sql_academy_airport.repository;
 import com.example.sql_academy_airport.model.Good;
 import com.example.sql_academy_airport.model.GoodType;
 import com.example.sql_academy_airport.util.exception.WrongIdForUpdateException;
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -81,6 +82,25 @@ public class GoodRepositoryImpl implements GoodRepository {
                 """;
         int countOfDeleted = template.update(sqlQuery, id);
         return Map.of("deleted", countOfDeleted > 0);
+    }
+
+    public Map<String, Integer> getMostExpensiveGood(String goodTypeName, Integer limit) {
+        String sqlQuery = """
+                SELECT good_name, unit_price
+                FROM goods
+                JOIN payments ON goods.good_id = payments.good
+                JOIN good_types ON goods.type = good_types.good_type_id
+                WHERE good_type_name = ? AND unit_price = (
+                    SELECT MAX(unit_price)
+                    FROM payments
+                    JOIN goods ON Payments.good = goods.good_id
+                    JOIN good_types ON goods.type = good_types.good_type_id
+                    WHERE good_type_name = ?
+                )
+                LIMIT ?
+                """;
+        return template.queryForObject(sqlQuery, (rs, rowNum) -> Map.of(rs.getString("good_name"),
+                rs.getInt("unit_price")), goodTypeName, goodTypeName, limit);
     }
 
     private Good rowMapper(ResultSet rs) throws SQLException {

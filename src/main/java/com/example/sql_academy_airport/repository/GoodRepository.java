@@ -12,4 +12,6 @@ public interface GoodRepository {
     Good update(Good good, Long id);
 
     Map<String, Boolean> delete(Long id);
+
+    Map<String, Integer> getMostExpensiveGood(String goodTypeName, Integer limit);
 }

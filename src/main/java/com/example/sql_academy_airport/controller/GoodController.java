@@ -38,4 +38,10 @@ public class GoodController {
     public ResponseEntity<Map<String, Boolean>> delete(@PathVariable Long id) {
         return new ResponseEntity<>(goodService.delete(id), HttpStatus.OK);
     }
+
+    @GetMapping("/getMostExp/{goodTypeName}/{limit}")
+    public ResponseEntity<Map<String, Integer>> getMostExpensiveGood(@PathVariable String goodTypeName,
+                                                                     @PathVariable Integer limit) {
+        return new ResponseEntity<>(goodService.getMostExpensiveGood(goodTypeName, limit), HttpStatus.OK);
+    }
 }

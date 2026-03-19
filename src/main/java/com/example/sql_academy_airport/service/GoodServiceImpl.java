@@ -1,12 +1,12 @@
 package com.example.sql_academy_airport.service;
 
+import com.example.sql_academy_airport.GoodMapper;
 import com.example.sql_academy_airport.dto.input.GoodInputDto;
 import com.example.sql_academy_airport.dto.output.GoodOutputDto;
 import com.example.sql_academy_airport.model.Good;
 import com.example.sql_academy_airport.model.GoodType;
 import com.example.sql_academy_airport.repository.GoodRepository;
 import com.example.sql_academy_airport.repository.GoodTypeRepository;
-import com.example.sql_academy_airport.GoodMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -49,6 +49,11 @@ public class GoodServiceImpl implements GoodService {
         Good typeInTable = goodRepository.getById(id);
         goodMapper.updateEntityFromDto(goodInputDto, typeInTable);
         return goodMapper.toDto(goodRepository.update(typeInTable, id));
+    }
+
+    @Override
+    public Map<String, Integer> getMostExpensiveGood(String goodTypeName, Integer limit) {
+        return goodRepository.getMostExpensiveGood(goodTypeName, limit);
     }
 
     @Override

@@ -13,4 +13,6 @@ public interface GoodService {
     GoodOutputDto update(GoodInputDto goodInputDto, Long id);
 
     Map<String, Boolean> delete(Long id);
+
+    Map<String, Integer> getMostExpensiveGood(String goodTypeName, Integer limit);
 }

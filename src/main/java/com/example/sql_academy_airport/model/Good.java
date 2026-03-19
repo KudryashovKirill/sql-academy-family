@@ -34,6 +34,7 @@ public class Good {
     }
 
     public Good(long goodId, String goodName) {
-
+        this.goodId = goodId;
+        this.goodName = goodName;
     }
 }
